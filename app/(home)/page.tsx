@@ -1,56 +1,45 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+import React from "react";
+import  Button  from "@/components/ui/button";
+import { Vortex } from "@/components/ui/vortex";
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+
 
 export default function Home() {
-  return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </div>
-      </div>
+   
+return <>
 
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
+    <section className="flex flex-col justify-center
+    h-[80vh] w-11/12">
+      <Vortex
+      backgroundColor="black"
+      rangeY={800}
+      particleCount={200}
+      baseSpeed={0.1}
+      rangeSpeed={0}
+      baseRadius={0.1}
+      className="flex items-center flex-col justify-center px-2 md:px-10  py-4 h-full "
+      >
+        <div className="flex flex-col justify-center items-center  gap-8">
+          <h1 className=" text-5xl font-bold">Front-End</h1>
+          <p className="text-center text-4xl md:text-5xl font-bold max-w-[40rem]">Make
+              <span
+              className="bg-gradient-to-r from-highlight via-pink-500 to-red-500
+              bg-clip-text text-transparent"> Beautiful </span>
+              websites turn ideas into reality
+          </p>
 
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
+          <p className="text-center text-xl max-w-[30rem]">
+            Hi! I'm Jc, a Next.js  Developer based in Brazil.
+          </p>
+          <Button>Shoy My skills</Button>
+          </div>
+      </Vortex>
     </section>
-  );
+
+    <section>
+      
+    </section>
+
+  </>
+  
 }

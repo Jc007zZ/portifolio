@@ -33,21 +33,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="en" className="overflow-x-hidden">
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
+          "flex flex-col items-center min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex flex-col ">
             <NavBar />
-            <main className="flex flex-col items-center container max-w-7xl pt-16 flex-grow overflow-x-hidden">
+            <main className="flex mb-32 min-h-screen w-[100vw] flex-col items-center pt-16 flex-grow overflow-x-hidden">
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3">
+            <footer className="w-full h-[5rem] flex items-center justify-center p-4">
                 <span className="text-default-600">Powered by</span>
                 <p className="text-primary">Jc007zZ</p>
             </footer>

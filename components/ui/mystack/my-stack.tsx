@@ -47,7 +47,7 @@ export  function MyStack() {
 
   return (
     <div
-      className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background p-10 md:shadow-xl"
+      className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg  bg-background  md:shadow-xl"
       ref={containerRef}
     >
       <div className="flex size-full flex-col max-w-[400px] max-h-[200px] items-stretch justify-between gap-10">
@@ -87,11 +87,7 @@ export  function MyStack() {
             alt="Picture of the author"/>
           </Circle>
           <Circle ref={div4Ref} className="size-16">
-             <Image 
-            src={nodelogo}
-            width={500}
-            height={500}
-            alt="Picture of the author"/>
+             <p className="text-black font-extrabold text-xl">Me</p>
           </Circle>
           <Circle ref={div6Ref}>
              <Image 

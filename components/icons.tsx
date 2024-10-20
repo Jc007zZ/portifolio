@@ -9,7 +9,11 @@ export const DiscordIcon: React.FC<IconSvgProps> = ({
   ...props
 }) => {
   return (
-    <a href="https://discordapp.com/users/428365185246560258" target="_blank">
+    <a
+      href="https://discordapp.com/users/428365185246560258"
+      rel="noreferrer"
+      target="_blank"
+    >
       <svg
         height={size || height}
         viewBox="0 0 24 24"
@@ -25,8 +29,6 @@ export const DiscordIcon: React.FC<IconSvgProps> = ({
   );
 };
 
-
-
 export const GithubIcon: React.FC<IconSvgProps> = ({
   size = 24,
   width,
@@ -34,7 +36,7 @@ export const GithubIcon: React.FC<IconSvgProps> = ({
   ...props
 }) => {
   return (
-    <a href="https://github.com/Jc007zZ" target="_blank">
+    <a href="https://github.com/Jc007zZ" rel="noreferrer" target="_blank">
       <svg
         height={size || height}
         viewBox="0 0 24 24"
@@ -95,7 +97,3 @@ export const SunFilledIcon = ({
     </g>
   </svg>
 );
-
-
-
-

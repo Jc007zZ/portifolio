@@ -6,11 +6,11 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import NavBar  from "@/components/navbar";
+import NavBar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: {
-    default: 'Jc007zZ',
+    default: "Jc007zZ",
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en" className="overflow-x-hidden">
+    <html suppressHydrationWarning className="overflow-x-hidden" lang="en">
       <head />
       <body
         className={clsx(
@@ -47,14 +47,24 @@ export default function RootLayout({
               {children}
             </main>
             <footer className="w-full h-[5rem] flex items-center justify-center p-4">
-               
-                <p className="text-default-600"> 
-                Powered by <a href="https://discordapp.com/users/428365185246560258" target="_blank" className="text-primary hover:underline hover:cursor-pointer">Jc007zZ</a> 
-                </p>
+              <p className="text-default-600">
+                Powered by{" "}
+                <a
+                  className="text-primary hover:underline hover:cursor-pointer"
+                  href="https://discordapp.com/users/428365185246560258"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Jc007zZ
+                </a>
+              </p>
             </footer>
           </div>
         </Providers>
-        <script src="https://kit.fontawesome.com/f7197b4219.js" crossOrigin="anonymous"></script>
+        <script
+          crossOrigin="anonymous"
+          src="https://kit.fontawesome.com/f7197b4219.js"
+        />
       </body>
     </html>
   );

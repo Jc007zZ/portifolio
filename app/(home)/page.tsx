@@ -127,6 +127,8 @@ export default function Home() {
             <GithubIcon className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
           </div>
         </article>
+            
+
       </section>
     </>
   );

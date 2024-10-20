@@ -9,8 +9,8 @@ import angularlogo from "@/components/ui/mystack/logos/angular-logo.png";
 import figmalogo from "@/components/ui/mystack/logos/figma-logo.png";
 import nextlogo from "@/components/ui/mystack/logos/next-logo.png";
 import nodelogo from "@/components/ui/mystack/logos/node-logo.png";
-import photoshoplogo from "@/components/ui/mystack/logos/photoshop-logo.png";
-import vslogo from "@/components/ui/mystack/logos/vs-logo.png";
+import postgreslogo from "@/components/ui/mystack/logos/postgres-logo.png";
+import prismalogo from "@/components/ui/mystack/logos/prisma-logo.png";
 import tailwindlogo from "@/components/ui/mystack/logos/tailwind-logo.png";
 import tslogo from "@/components/ui/mystack/logos/ts-logo.png";
 
@@ -47,7 +47,7 @@ export  function MyStack() {
 
   return (
     <div
-      className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg  bg-background  md:shadow-xl"
+      className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg  bg-background "
       ref={containerRef}
     >
       <div className="flex size-full flex-col max-w-[400px] max-h-[200px] items-stretch justify-between gap-10">
@@ -89,10 +89,10 @@ export  function MyStack() {
           <Circle ref={div4Ref} className="size-16">
              <p className="text-black font-extrabold text-xl">Me</p>
           </Circle>
-          <Circle ref={div6Ref}>
+          <Circle ref={div6Ref} className="flex justify-center items-center">
              <Image 
-            className="scale-[2]"
-            src={photoshoplogo}
+            className="scale-[1.7]"
+            src={postgreslogo}
             width={500}
             height={500}
             alt="Picture of the author"/>
@@ -107,10 +107,10 @@ export  function MyStack() {
             height={500}
             alt="Picture of the author"/>
           </Circle>
-          <Circle ref={div7Ref} className="mt-10">
+          <Circle ref={div7Ref} className="flex justify-center items-center mt-10">
              <Image
-            className="scale-[1.5]" 
-            src={vslogo}
+            className="scale-[1.7]" 
+            src={prismalogo}
             width={500}
             height={500}
             alt="Picture of the author"/>

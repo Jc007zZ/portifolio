@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -44,15 +43,18 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col ">
             <NavBar />
-            <main className="flex mb-32 min-h-screen w-[100vw] flex-col items-center pt-16 flex-grow overflow-x-hidden">
+            <main className="flex min-h-screen w-[100vw] flex-col items-center pt-16 flex-grow ">
               {children}
             </main>
             <footer className="w-full h-[5rem] flex items-center justify-center p-4">
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">Jc007zZ</p>
+               
+                <p className="text-default-600"> 
+                Powered by <a href="https://discordapp.com/users/428365185246560258" target="_blank" className="text-primary hover:underline hover:cursor-pointer">Jc007zZ</a> 
+                </p>
             </footer>
           </div>
         </Providers>
+        <script src="https://kit.fontawesome.com/f7197b4219.js" crossOrigin="anonymous"></script>
       </body>
     </html>
   );

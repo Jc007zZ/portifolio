@@ -107,7 +107,7 @@ export default function Home() {
             My Cv:{" "}
             <a
               className="text-primary hover:text-primary-300 underline hover:cursor-pointer font-normal"
-              href="https://docs.google.com/document/d/1bnRL1MG2SJz4jY1hwKrZ2QtIzv6M5FR2rSyJcthh1rc/edit?usp=sharing"
+              href="https://docs.google.com/document/d/15HJG7IX08cXWxdkr2-zDZo5-padP5wdPt8HYMYPFOr4/edit?tab=t.0"
               rel="noreferrer"
               target="_blank"
             >

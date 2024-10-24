@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import Button from "@/components/ui/buttton";
+import ButtonDefault from "@/components/ui/button-default";
 import { MyStack } from "@/components/ui/mystack/my-stack";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -12,9 +12,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Button } from "@nextui-org/button";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 
 export default function Home() {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
   return (
     <>
       <section
@@ -38,7 +42,7 @@ export default function Home() {
           <p className="text-center text-xl max-w-[30rem]">
             Hi! I&apos;m Jc, a Next.js Developer based in Brazil.
           </p>
-          <Button target="#skills">Shoy My skills</Button>
+          <ButtonDefault target="#skills">Shoy My skills</ButtonDefault>
         </div>
       </section>
 
@@ -72,10 +76,9 @@ export default function Home() {
               <CarouselItem key={index} className=" first-letter:lpl-1">
                 <div className=" p-1 w-[60vw] sm:w-[40vw] md:w-[27vw] lg:w-[21vw] xl:w-[16vw]">
                   <Card>
-                    <CardContent className="flex aspect-square p-[6rem] items-center justify-center ">
-                      <span className="text-2xl font-semibold select-none	">
+                    <CardContent className="flex flex-col items-center justify-between aspect-square p-4 ">
                         {index + 1}
-                      </span>
+                        <Button key={'5xl'} onPress={onOpen}>Show more</Button>
                     </CardContent>
                   </Card>
                 </div>
@@ -86,7 +89,44 @@ export default function Home() {
           <CarouselNext />
         </Carousel>
       </section>
-
+      <div>
+      <Modal isOpen={isOpen} size={'5xl'} onOpenChange={onOpenChange}>
+        <ModalContent className="h-[80vh]">
+          {(onClose:any) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalBody>
+                <p> 
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
+                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
+                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
+                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
+                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      </div>
       <section
         className="flex flex-col justify-center items-center mt-24"
         id="contact"
@@ -112,7 +152,7 @@ export default function Home() {
               target="_blank"
             >
               Click Here
-            </a>
+            </a> 
           </p>
 
           <div className="flex justify-center gap-4 mt-8">

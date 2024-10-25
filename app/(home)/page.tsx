@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-
+import { useRef } from 'react';
+import Image from 'next/image';
 import ButtonDefault from "@/components/ui/button-default";
 import { MyStack } from "@/components/ui/mystack/my-stack";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,9 +17,56 @@ import { Button } from "@nextui-org/button";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 
+
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  deploy: string;
+}
+
 export default function Home() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const [content, setcontent] = React.useState({} as Project)
+  const scrollContainerRef = useRef(null);
 
+  const projects:Project[] = [
+    {
+      title: "Project 1",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      image: "/project-images/coffe.png",
+      deploy:"https://nextui.org/og.png"
+    },
+    {
+      title: "Cobalt",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      image: "/project-images/cobalt.png",
+      deploy:"https://nextui.org/og.png"
+    },
+    {
+      title: "Project 3",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      image: "/project-images/drone.png",
+      deploy:"https://nextui.org/og.png"
+    },
+    {
+      title: "Project 3",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      image: "/project-images/apple.png",
+      deploy:"https://nextui.org/og.png"
+    }
+  ]
+
+  const handleOpen = (content:Project) => {
+    setcontent(content)
+    onOpen();
+  }
+
+
+
+  function stopScrolling(){
+    
+  }
   return (
     <>
       <section
@@ -72,13 +120,29 @@ export default function Home() {
         </div>
         <Carousel className="w-[70vw] sm:w-[80vw] ">
           <CarouselContent className="flex">
-            {Array.from({ length: 20 }).map((_, index) => (
+            {projects.map((e: Project, index) => (
               <CarouselItem key={index} className=" first-letter:lpl-1">
-                <div className=" p-1 w-[60vw] sm:w-[40vw] md:w-[27vw] lg:w-[21vw] xl:w-[16vw]">
-                  <Card>
-                    <CardContent className="flex flex-col items-center justify-between aspect-square p-4 ">
-                        {index + 1}
-                        <Button key={'5xl'} onPress={onOpen}>Show more</Button>
+                <div className=" p-1 ">
+                  <Card className="w-[67vw] sm:w-[60vw] md:w-[45vw] lg:w-[29vw] h-[40rem]">
+                    <CardContent className="flex flex-col  items-center justify-around aspect-square p-4 h-full w-full">
+                        <div className="flex flex-col gap-y-4">
+                          <h1 className="text-center font-extrabold text-xl sm:text-2xl">
+                            {e.title}
+                            </h1>
+                          <p className="text-center text-sm font-medium">
+                            {e.description}
+                          </p>
+                        </div>
+                          <div className="overflow-auto h-[20rem]"
+                         >
+                            <Image
+                                src={e.image}
+                                alt={e.title}
+                                width={5731}
+                                height={0}
+                              />
+                          </div>
+                        <Button key={'5xl'} onPress={() => handleOpen(e)}>Show more</Button>
                     </CardContent>
                   </Card>
                 </div>
@@ -94,25 +158,16 @@ export default function Home() {
         <ModalContent className="h-[80vh]">
           {(onClose:any) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">{content.title}</ModalHeader>
               <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
+                {content.description}
+
+                <Image
+                src={content.image}
+                alt={content.title}
+                width={600}
+                height={0} 
+               />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

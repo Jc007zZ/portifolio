@@ -15,3 +15,12 @@
 html {
     scroll-behavior: smooth;
 }
+
+.scrollbar-hidden {
+    overflow: auto; /* ou scroll */
+    scrollbar-width: none; /* Para Firefox */
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* Para Chrome e Safari */
+  }

@@ -1,23 +1,26 @@
 'use client'
 
-import ProjectImage from "@/components/project-image"
+import { useRef, } from 'react';
 import Image from 'next/image';
-import { useRef, useEffect } from 'react';
-const Teste = () => {
+import { cn } from "@/lib/utils";
+interface ScrollOnHoverProps   {
+    src: any;
+    className?: string;
+    run?: any
+}
 
+ const ProcjtImage: React.FC<ScrollOnHoverProps> = ({ src, className, ...props }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   let scrollInterval: NodeJS.Timeout | null = null;
 
   const startScrolling = () => {
-    if (scrollInterval) return; // Evita múltiplos intervalos
-
+    if (scrollInterval) return; 
     scrollInterval = setInterval(() => {
       if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollTop += 2; // Velocidade do scroll
+        scrollContainerRef.current.scrollTop += 2;
       }
-    }, 30); // Tempo entre os scrolls
+    }, 30);
   };
-
 
   const stopScrolling = () => {
     if (scrollContainerRef.current){
@@ -29,18 +32,16 @@ const Teste = () => {
     }
   };
 
-
-
   return (
     <div
-      className={"overflow-auto h-[20rem] grayscale hover:grayscale-0 scrollbar-hidden hover:cursor-pointer" }
+      className={ cn("overflow-auto h-[20rem] grayscale hover:grayscale-0 scrollbar-hidden hover:cursor-pointer", className) }
       ref={scrollContainerRef}
-    
       onMouseEnter={startScrolling}
       onMouseLeave={stopScrolling}
+      {...props}
     >
       <Image
-        src={"/project-images/cobalt.png"}
+        src={src}
         alt={"teste"}
         width={500}
         height={0}
@@ -49,4 +50,6 @@ const Teste = () => {
   );
 };
 
-export default Teste;
+export default ProcjtImage;
+
+

@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRef } from 'react';
-import Image from 'next/image';
 import ButtonDefault from "@/components/ui/button-default";
 import { MyStack } from "@/components/ui/mystack/my-stack";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,8 +15,12 @@ import { Button } from "@nextui-org/button";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 
+import   ProjectImage  from '@/components/project-image';
+
+
 
 interface Project {
+  id: string,
   title: string;
   description: string;
   image: string;
@@ -26,30 +28,30 @@ interface Project {
 }
 
 export default function Home() {
+
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [content, setcontent] = React.useState({} as Project)
-  const scrollContainerRef = useRef(null);
 
   const projects:Project[] = [
-    {
+    { id: "1",
       title: "Project 1",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
       image: "/project-images/coffe.png",
       deploy:"https://nextui.org/og.png"
     },
-    {
+    { id:"2",
       title: "Cobalt",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
       image: "/project-images/cobalt.png",
       deploy:"https://nextui.org/og.png"
     },
-    {
+    { id:"3",
       title: "Project 3",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
       image: "/project-images/drone.png",
       deploy:"https://nextui.org/og.png"
     },
-    {
+    { id:"4",
       title: "Project 3",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
       image: "/project-images/apple.png",
@@ -63,10 +65,6 @@ export default function Home() {
   }
 
 
-
-  function stopScrolling(){
-    
-  }
   return (
     <>
       <section
@@ -125,23 +123,15 @@ export default function Home() {
                 <div className=" p-1 ">
                   <Card className="w-[67vw] sm:w-[60vw] md:w-[45vw] lg:w-[29vw] h-[40rem]">
                     <CardContent className="flex flex-col  items-center justify-around aspect-square p-4 h-full w-full">
-                        <div className="flex flex-col gap-y-4">
-                          <h1 className="text-center font-extrabold text-xl sm:text-2xl">
+                        <div  className="flex flex-col gap-y-4">
+                          <h1 className="text-center font-extrabold text-xl sm:text-2xl select-none">
                             {e.title}
                             </h1>
-                          <p className="text-center text-sm font-medium">
+                          <p className="text-center text-sm font-medium select-none">
                             {e.description}
                           </p>
                         </div>
-                          <div className="overflow-auto h-[20rem]"
-                         >
-                            <Image
-                                src={e.image}
-                                alt={e.title}
-                                width={5731}
-                                height={0}
-                              />
-                          </div>
+                        <ProjectImage src={e.image} />
                         <Button key={'5xl'} onPress={() => handleOpen(e)}>Show more</Button>
                     </CardContent>
                   </Card>
@@ -159,15 +149,9 @@ export default function Home() {
           {(onClose:any) => (
             <>
               <ModalHeader className="flex flex-col gap-1">{content.title}</ModalHeader>
-              <ModalBody>
-                {content.description}
-
-                <Image
-                src={content.image}
-                alt={content.title}
-                width={600}
-                height={0} 
-               />
+              <ModalBody className="flex flex-row-reverse items-center">
+                <p className="flex-1 h-5/6">{content.description}</p>
+               <ProjectImage  src={content.image}  className="flex-1 h-[30rem]"/>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

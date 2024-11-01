@@ -1,0 +1,23 @@
+{  
+"about": {
+    "navSkills": "Habilidades",
+    "navProjects": "Projetos",
+    "navContact": "Contato",
+    "homeHi": "Oi eu sou um desenvolvedor",
+    "homeMarked": "Full Stack",
+    "homeLeading": "criador de aplicativos web modernos.",
+    "homeDescription": "Desenvolvedor full stack alocado no Brasil. Sou apaixonado por construir aplicativos web modernos usando Next.js e Node.js.",
+    "homeButtonText": "Minhas Habilidades",
+    "projectTitleSection": " Meus Projetos",
+    "coffeDescription": "Identifiquei uma demanda crescente por cafés especiais e criei uma loja online intuitiva para atender a esse público, especialmente durante a pandemia. Usei React para construir uma interface responsiva, Zod para validar dados, e JavaScript para lógica de negócios e integração de pagamentos. O resultado foi uma loja funcional com alta conversão e feedback positivo dos usuários sobre usabilidade e variedade de produtos.",
+    "cobaltDescription": "Desenvolvi uma leading Page para  uma empresa de investimentos, com o objetivo de aumentar visibilidade. Utilizei React para garantir responsividade e fast loading, focando na experiência do usuário. A página incluiu otimizações de performance e ferramentas de análise para monitorar conversões. O resultado foi uma página atraente e funcional, que aumentou leads e engajamento",
+    "droneDescription": "Foi notavel uma demanda crescente por drones e desenvolvi uma landing page para atender esse mercado em expansão. Utilizei React para criar uma interface. O resultado foi uma landing page funcional e atrativa, com alta taxa de conversão e feedback positivo dos usuários sobre a facilidade de navegação e a diversidade de produtos oferecidos.",
+    "appleDescription": "Percebi uma oportunidade para aprimorar a experiência do usuário no site da Apple. O objetivo era garantir que o redesign não apenas mantivesse a identidade da marca, mas também introduzisse melhorias no layout para engajamento. O projeto resultou em um site redesenhado que foi elogiado pela interface moderna e pelo carregamento rápido, o que melhorou significativamente a experiência do usuário e aumentou a permanência na página.",
+    "showMore": "ver mais",
+    "stackTitleSection": "Minha Stack",
+    "contactTitle": "Meu Contato",
+    "contactCv": "Meu curriculo:",
+    "clikHere": "Click Aqui",
+    "footerText": "Criado por"
+}
+}

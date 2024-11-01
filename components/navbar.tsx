@@ -1,4 +1,5 @@
 "use client";
+import {useTranslations} from 'next-intl';
 import {
   Navbar,
   NavbarBrand,
@@ -8,7 +9,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import dicionary from "@/public/locales/common.json"
 
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -21,31 +21,10 @@ interface Project {
   deploy: string;
 }
 
-type LanguageDictionary = {
-  navSkills: string;
-  navProjects: string;
-  navContact: string;
-  homeHi: string;
-  homeMarked: string;
-  homeLeading: string;
-  homeDescription: string;
-  homeButtonText: string;
-  projectTitleSection: string;
-  coffeDescription: string;
-  cobaltDescription: string;
-  droneDescription: string;
-  appleDescription: string;
-  showMore: string;
-  stackTitleSection: string;
-  contactTitle: string;
-  contactCv: string;
-  clikHere: string;
-  footerText: string;
-};
 
 export default function App() {
-  let lang = "pt"
-  let text: Record<string, LanguageDictionary> = dicionary
+  
+  const t = useTranslations('about');
 
   function HandleItem() {
     const menu = document.getElementById("menu");
@@ -67,19 +46,19 @@ export default function App() {
 
         <NavbarItem className="hidden sm:flex">
           <a className="text-lg" color="foreground" href="#skills">
-            {text[lang].navSkills}
+            {t("navSkills")}
           </a>
         </NavbarItem>
 
         <NavbarItem isActive className="hidden sm:flex">
           <a aria-current="page" className="text-lg" href="#projects">
-          {text[lang].navProjects}
+          {t("navProjects")}
           </a>
         </NavbarItem>
 
         <NavbarItem className="hidden sm:flex">
           <a className="text-lg" color="foreground" href="#contact">
-          {text[lang].navContact}
+          {t("navContact")}
           </a>
         </NavbarItem>
       </NavbarContent>
@@ -107,7 +86,7 @@ export default function App() {
               href="#skills"
               onClick={HandleItem}
             >
-               {text[lang].navSkills}
+               {t("navSkills")}
             </a>
           </NavbarItem>
           <NavbarItem isActive>
@@ -117,7 +96,7 @@ export default function App() {
               href="#projects"
               onClick={HandleItem}
             >
-               {text[lang].navProjects}
+               {t("navProjects")}
             </a>
           </NavbarItem>
           <NavbarItem>
@@ -127,7 +106,7 @@ export default function App() {
               href="#contact"
               onClick={HandleItem}
             >
-               {text[lang].navContact}
+               {t("navContact")}
             </a>
           </NavbarItem>
         </NavbarMenuItem>

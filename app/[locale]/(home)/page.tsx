@@ -1,6 +1,5 @@
 "use client";
-import dicionary from "@/public/locales/common.json";
-
+import {useTranslations} from 'next-intl';
 import React from "react";
 import ButtonDefault from "@/components/ui/button-default";
 import { MyStack } from "@/components/ui/mystack/my-stack";
@@ -27,33 +26,9 @@ interface Project {
   deploy: string;
 }
 
-type LanguageDictionary = {
-  navSkills: string;
-  navProjects: string;
-  navContact: string;
-  homeHi: string;
-  homeMarked: string;
-  homeLeading: string;
-  homeDescription: string;
-  homeButtonText: string;
-  projectTitleSection: string;
-  coffeDescription: string;
-  cobaltDescription: string;
-  droneDescription: string;
-  appleDescription: string;
-  showMore: string;
-  stackTitleSection: string;
-  contactTitle: string;
-  contactCv: string;
-  clikHere: string;
-  footerText: string;
-};
-
 export default function Home() {
 
-  let lang = "pt"
-  let text: Record<string, LanguageDictionary> = dicionary
-
+  const t = useTranslations('about');
   
 
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -62,27 +37,27 @@ export default function Home() {
   const projects:Project[] = [
     { id: "1",
       title: "Coffe Store",
-      description: text[lang].coffeDescription,
+      description: t("coffeDescription"),
       image: "/project-images/coffe.png",
       deploy:"https://coffee-nine-sandy.vercel.app/"
     },
     { id:"2",
       title: "Cobalt",
-      description: text[lang].cobaltDescription,
+      description: t("cobaltDescription"),
       image: "/project-images/cobalt.png",
       deploy:"https://cobalt-tan-delta.vercel.app/"
     },
     { id:"3",
       title: "Shop Store",
-      description: text[lang].droneDescription,
+      description: t("droneDescription"),
       image: "/project-images/drone.png",
       deploy:"https://drone-shop-ten.vercel.app/"
     },
     { id:"4",
       title: "Apple Redesing",
-      description: text[lang].appleDescription,
+      description: t("appleDescription"),
       image: "/project-images/apple.png",
-      deploy:"http://localhost:3000/no-deploy"
+      deploy:"http://localhost:3000/pt/no-deploy"
     }
   ]
 
@@ -102,7 +77,7 @@ export default function Home() {
         <div className="flex flex-col justify-center items-center  gap-8">
 
           <p className="text-center text-5xl md:text-6xl font-bold max-w-[60rem]">
-          {text[lang].homeHi}
+          {t("homeHi")}
             <span
               className="bg-gradient-to-r from-highlight via-pink-600  to-purple-600
                 bg-clip-text text-transparent"
@@ -110,20 +85,20 @@ export default function Home() {
               {" "}
               Full Stack{" "}
             </span>
-            {text[lang].homeLeading}
+            {t("homeLeading")}
           </p>
           <p className="text-center text-xl text-zinc-500 max-w-[50rem]">
-            {text[lang].homeDescription}
+            {t("homeDescription")}
           </p>
           <ButtonDefault target="#skills">
-             {text[lang].homeButtonText}
+             {t("homeButtonText")}
            </ButtonDefault>
         </div>
       </section>
       <section className="flex flex-col items-center w-full" id="projects">
         <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md mb-20">
           <h1 className="text-5xl font-bold text-start relative z-20 h-14">
-          {text[lang].projectTitleSection}
+          {t("projectTitleSection")}
             
           </h1>
           
@@ -151,7 +126,7 @@ export default function Home() {
                           </p>
                         </div>
                         <ProjectImage src={e.image} />
-                        <Button key={'5xl'} onPress={() => window.open(e.deploy, "_blank")}>{text[lang].showMore}</Button>
+                        <Button key={'5xl'} onPress={() => window.open(e.deploy, "_blankt")}>{t("showMore")}</Button>
                     </CardContent>
                   </Card>
                 </div>
@@ -169,7 +144,7 @@ export default function Home() {
       >
         <div className="w-full flex flex-col justify-center items-center">
           <h1 className="text-5xl font-bold border-b-2 border-black dark:border-white pb-2">
-          {text[lang].stackTitleSection}
+          {t("stackTitleSection")}
           </h1>
         </div>
         <MyStack />
@@ -205,7 +180,7 @@ export default function Home() {
       >
         <article className="w-full flex flex-col justify-center items-center">
           <h1 className="text-5xl font-bold border-b-2 border-black dark:border-white pb-2">
-          {text[lang].navContact}
+          {t("navContact")}
           </h1>
         </article>
         <article className="mt-24">
@@ -216,7 +191,7 @@ export default function Home() {
             Whatsapp: <span className="font-normal">+55 31 9 9576-4315</span>
           </p>
           <p className="font-extrabold text-lg">
-            {text[lang].contactCv}{" "}
+            {t("contactCv")}{" "}
             <a
               className="text-primary hover:text-primary-300 underline hover:cursor-pointer font-normal"
               href="https://docs.google.com/document/d/15HJG7IX08cXWxdkr2-zDZo5-padP5wdPt8HYMYPFOr4/edit?tab=t.0"

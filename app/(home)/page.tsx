@@ -1,6 +1,7 @@
 "use client";
 import dicionary from "@/public/locales/common.json";
 
+import React from "react";
 import ButtonDefault from "@/components/ui/button-default";
 import { MyStack } from "@/components/ui/mystack/my-stack";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +13,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@nextui-org/button";
-git aimport {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 
 import   ProjectImage  from '@/components/project-image';

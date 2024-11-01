@@ -7,6 +7,13 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import NavBar from "@/components/navbar";
+import { Inter } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning className="overflow-x-hidden" lang="en">
+    <html suppressHydrationWarning className={`overflow-x-hidden ${inter.variable}`} lang="en">
       <head />
       <body
         className={clsx(
@@ -43,7 +50,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col ">
             <NavBar />
-            <main className="flex min-h-screen w-[100vw] flex-col items-center pt-16 flex-grow ">
+            <main className="flex min-h-screen w-[100vw] flex-col items-center pt-16 flex-grow px-4 md:px-16 ">
               {children}
             </main>
             <footer className="w-full h-[5rem] flex items-center justify-center p-4">

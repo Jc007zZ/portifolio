@@ -1,6 +1,6 @@
 "use client";
+import dicionary from "@/public/locales/common.json";
 
-import React from "react";
 import ButtonDefault from "@/components/ui/button-default";
 import { MyStack } from "@/components/ui/mystack/my-stack";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,11 +12,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@nextui-org/button";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
+git aimport {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 
 import   ProjectImage  from '@/components/project-image';
-
 
 
 interface Project {
@@ -27,35 +26,62 @@ interface Project {
   deploy: string;
 }
 
+type LanguageDictionary = {
+  navSkills: string;
+  navProjects: string;
+  navContact: string;
+  homeHi: string;
+  homeMarked: string;
+  homeLeading: string;
+  homeDescription: string;
+  homeButtonText: string;
+  projectTitleSection: string;
+  coffeDescription: string;
+  cobaltDescription: string;
+  droneDescription: string;
+  appleDescription: string;
+  showMore: string;
+  stackTitleSection: string;
+  contactTitle: string;
+  contactCv: string;
+  clikHere: string;
+  footerText: string;
+};
+
 export default function Home() {
+
+  let lang = "pt"
+  let text: Record<string, LanguageDictionary> = dicionary
+
+  
 
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [content, setcontent] = React.useState({} as Project)
 
   const projects:Project[] = [
     { id: "1",
-      title: "Project 1",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      title: "Coffe Store",
+      description: text[lang].coffeDescription,
       image: "/project-images/coffe.png",
-      deploy:"https://nextui.org/og.png"
+      deploy:"https://coffee-nine-sandy.vercel.app/"
     },
     { id:"2",
       title: "Cobalt",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      description: text[lang].cobaltDescription,
       image: "/project-images/cobalt.png",
-      deploy:"https://nextui.org/og.png"
+      deploy:"https://cobalt-tan-delta.vercel.app/"
     },
     { id:"3",
-      title: "Project 3",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      title: "Shop Store",
+      description: text[lang].droneDescription,
       image: "/project-images/drone.png",
-      deploy:"https://nextui.org/og.png"
+      deploy:"https://drone-shop-ten.vercel.app/"
     },
     { id:"4",
-      title: "Project 3",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit quo possimus asperiores incidunt officia quos, magni ullam labore esse praesentium aperiam, commodi quidem vel iste exercitationem, modi distinctio aliquam.",
+      title: "Apple Redesing",
+      description: text[lang].appleDescription,
       image: "/project-images/apple.png",
-      deploy:"https://nextui.org/og.png"
+      deploy:"http://localhost:3000/no-deploy"
     }
   ]
 
@@ -69,53 +95,45 @@ export default function Home() {
     <>
       <section
         className="flex flex-col justify-center items-center 
-      h-[90vh] min-h-[22rem] w-full "
+      h-[85vh] min-h-[22rem] w-full "
         id="home"
       >
         <div className="flex flex-col justify-center items-center  gap-8">
-          <h1 className=" text-5xl font-bold">Front-End</h1>
-          <p className="text-center text-4xl md:text-5xl font-bold max-w-[40rem]">
-            Make
+
+          <p className="text-center text-5xl md:text-6xl font-bold max-w-[60rem]">
+          {text[lang].homeHi}
             <span
-              className="bg-gradient-to-r from-highlight via-pink-500 to-red-500
+              className="bg-gradient-to-r from-highlight via-pink-600  to-purple-600
                 bg-clip-text text-transparent"
             >
               {" "}
-              Beautiful{" "}
+              Full Stack{" "}
             </span>
-            websites turn ideas into reality
+            {text[lang].homeLeading}
           </p>
-          <p className="text-center text-xl max-w-[30rem]">
-            Hi! I&apos;m Jc, a Next.js Developer based in Brazil.
+          <p className="text-center text-xl text-zinc-500 max-w-[50rem]">
+            {text[lang].homeDescription}
           </p>
-          <ButtonDefault target="#skills">Shoy My skills</ButtonDefault>
+          <ButtonDefault target="#skills">
+             {text[lang].homeButtonText}
+           </ButtonDefault>
         </div>
       </section>
-
-      <section
-        className=" pt-[5rem] w-screen h-[75vh] min-h-[40rem] flex flex-col justify-center items-center"
-        id="skills"
-      >
-        <div className="w-full flex flex-col justify-center items-center">
-          <h1 className="text-5xl font-bold border-b-2 border-black dark:border-white pb-2">
-            My Stack
-          </h1>
-        </div>
-        <MyStack />
-      </section>
-
       <section className="flex flex-col items-center w-full" id="projects">
         <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md mb-20">
-          <h1 className="text-5xl font-bold text-center relative z-20">
-            My Projects
+          <h1 className="text-5xl font-bold text-start relative z-20 h-14">
+          {text[lang].projectTitleSection}
+            
           </h1>
-          <div className="w-[35rem] h-10 relative">
+          
+          {/* <div className="w-[35rem] h-10 relative">
             <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
             <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
             <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
             <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
-          </div>
+          </div> */}
         </div>
+
         <Carousel className="w-[70vw] sm:w-[80vw] ">
           <CarouselContent className="flex">
             {projects.map((e: Project, index) => (
@@ -132,7 +150,7 @@ export default function Home() {
                           </p>
                         </div>
                         <ProjectImage src={e.image} />
-                        <Button key={'5xl'} onPress={() => handleOpen(e)}>Show more</Button>
+                        <Button key={'5xl'} onPress={() => window.open(e.deploy, "_blank")}>{text[lang].showMore}</Button>
                     </CardContent>
                   </Card>
                 </div>
@@ -143,6 +161,19 @@ export default function Home() {
           <CarouselNext />
         </Carousel>
       </section>
+
+      <section
+        className=" pt-[5rem] w-screen h-[75vh] min-h-[40rem] flex flex-col justify-center items-center"
+        id="skills"
+      >
+        <div className="w-full flex flex-col justify-center items-center">
+          <h1 className="text-5xl font-bold border-b-2 border-black dark:border-white pb-2">
+          {text[lang].stackTitleSection}
+          </h1>
+        </div>
+        <MyStack />
+      </section>
+
       <div>
       <Modal isOpen={isOpen} size={'5xl'} onOpenChange={onOpenChange}>
         <ModalContent className="h-[80vh]">
@@ -166,13 +197,14 @@ export default function Home() {
         </ModalContent>
       </Modal>
       </div>
+
       <section
         className="flex flex-col justify-center items-center mt-24"
         id="contact"
       >
         <article className="w-full flex flex-col justify-center items-center">
           <h1 className="text-5xl font-bold border-b-2 border-black dark:border-white pb-2">
-            Contacs
+          {text[lang].navContact}
           </h1>
         </article>
         <article className="mt-24">
@@ -183,7 +215,7 @@ export default function Home() {
             Whatsapp: <span className="font-normal">+55 31 9 9576-4315</span>
           </p>
           <p className="font-extrabold text-lg">
-            My Cv:{" "}
+            {text[lang].contactCv}{" "}
             <a
               className="text-primary hover:text-primary-300 underline hover:cursor-pointer font-normal"
               href="https://docs.google.com/document/d/15HJG7IX08cXWxdkr2-zDZo5-padP5wdPt8HYMYPFOr4/edit?tab=t.0"

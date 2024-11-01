@@ -34,7 +34,7 @@ interface ScrollOnHoverProps   {
 
   return (
     <div
-      className={ cn("overflow-auto h-[20rem] grayscale hover:grayscale-0 scrollbar-hidden hover:cursor-pointer", className) }
+      className={ cn("overflow-auto h-[20rem] grayscale hover:grayscale-0 scrollbar-hidden", className) }
       ref={scrollContainerRef}
       onMouseEnter={startScrolling}
       onMouseLeave={stopScrolling}

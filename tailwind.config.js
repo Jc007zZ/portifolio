@@ -10,20 +10,12 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        move: "move 5s linear infinite",
-      },
-      keyframes: {
-        move: {
-          "0%": { transform: "translateX(-200px)" },
-          "100%": { transform: "translateX(200px)" },
-        },
-      },
-      animation: {
         first: "moveVertical 30s ease infinite",
         second: "moveInCircle 20s reverse infinite",
         third: "moveInCircle 40s linear infinite",
         fourth: "moveHorizontal 40s ease infinite",
         fifth: "moveInCircle 20s ease infinite",
+        move: "move 5s linear infinite",
       },
       keyframes: {
         moveHorizontal: {
@@ -36,6 +28,10 @@ module.exports = {
           "100%": {
             transform: "translateX(-50%) translateY(-10%)",
           },
+        },
+        move: {
+          "0%": { transform: "translateX(-200px)" },
+          "100%": { transform: "translateX(200px)" },
         },
         moveInCircle: {
           "0%": {
@@ -61,8 +57,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        mono: ["var(--font-mono)"],
+        sans: ['var(--font-inter)']
       },
     },
   },

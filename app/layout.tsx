@@ -1,15 +1,14 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
+import { Inter } from 'next/font/google'
 import clsx from "clsx";
-import {notFound} from 'next/navigation';
-import {getMessages} from 'next-intl/server';
 import { Providers } from "./providers";
-import {NextIntlClientProvider} from 'next-intl';
-import {routing} from '@/i18n/routing';
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import NavBar from "@/components/navbar";
-import { Inter } from 'next/font/google'
+
+import {NextIntlClientProvider} from 'next-intl';
+import {getLocale, getMessages} from 'next-intl/server';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -36,21 +35,16 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({
-  children,
-  params: {locale}
+  children
 }: {
   children: React.ReactNode;
-  params: {locale: string};
 }) {
 
-  if (!routing.locales.includes(locale as any)) {
-    notFound();
-  }
-  
+  const locale = await getLocale();
   const messages = await getMessages();
 
   return (
-    <html suppressHydrationWarning className={`overflow-x-hidden ${inter.variable}`} lang="en">
+    <html lang={locale} suppressHydrationWarning className={`overflow-x-hidden ${inter.variable}`}>
       <head />
       <body
         className={clsx(

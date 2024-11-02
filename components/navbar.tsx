@@ -12,6 +12,8 @@ import {
 
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
+import LocaleSwitcher from '@/components/ui/LocaleSwitcher';
+
 
 interface Project {
   id: string,
@@ -74,6 +76,7 @@ export default function App() {
         <DiscordIcon className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
         <GithubIcon className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
         <ThemeSwitch className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
+        <LocaleSwitcher/>
         <NavbarMenuToggle className="sm:hidden" id="menu" />
       </NavbarContent>
 

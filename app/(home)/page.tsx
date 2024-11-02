@@ -57,7 +57,7 @@ export default function Home() {
       title: "Apple Redesing",
       description: t("appleDescription"),
       image: "/project-images/apple.png",
-      deploy:"http://localhost:3000/pt/no-deploy"
+      deploy:"http://localhost:3000/no-deploy"
     }
   ]
 

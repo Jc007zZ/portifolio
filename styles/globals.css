@@ -24,3 +24,10 @@ html {
   .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Para Chrome e Safari */
   }
+
+.responsive-card {
+  flex-grow: 1;
+  /* flex-shrink: ; */
+  flex-basis: 30rem;
+
+}

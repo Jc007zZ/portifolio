@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@nextui-org/button";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
-import { GithubIcon, DiscordIcon } from "@/components/icons";
 
+import {Container} from "@/components/ui/container"
+
+
+import { Tech } from '@/components/ui/tech'
 import   ProjectImage  from '@/components/project-image';
-
+import { Linkedin, Github, Smartphone, FileText, Mail, Clock, Info , Pin } from 'lucide-react';
 
 interface Project {
   id: string,
@@ -66,12 +69,29 @@ export default function Home() {
     onOpen();
   }
 
+  const [copySuccess, setCopySuccess] = React.useState('');
+  const [email, setEmail] = React.useState('joaocpmcs@gmail.com'); 
+  const textToCopy = "joaocpmcs@gmail.com";
+
+  const handleCopyClick = async (e:any) => {
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setCopySuccess('Texto copiado com sucesso!');
+    } catch (error) {
+      setCopySuccess('Falha ao copiar o texto.');
+    }
+    setEmail('Copied!!')
+    setTimeout(() => {
+      setEmail(textToCopy)
+    }, 1000);
+  };
+
 
   return (
     <>
       <section
         className="flex flex-col justify-center items-center 
-      h-[85vh] min-h-[22rem] w-full "
+      h-[80vh] min-h-[22rem] w-full "
         id="home"
       >
         <div className="flex flex-col justify-center items-center  gap-8">
@@ -96,28 +116,22 @@ export default function Home() {
         </div>
       </section>
       <section className="flex flex-col items-center w-full" id="projects">
-        <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md mb-20">
-          <h1 className="text-5xl font-bold text-start relative z-20 h-14">
+        <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md ">
+        <h1 className="text-5xl font-bold h-14 pl-2 pb-20">
           {t("projectTitleSection")}
-            
           </h1>
-          
-          {/* <div className="w-[35rem] h-10 relative">
-            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
-          </div> */}
+         
         </div>
 
         <Carousel className="w-[70vw] sm:w-[80vw] ">
+
           <CarouselContent className="flex">
             {projects.map((e: Project, index) => (
-              <CarouselItem key={index} className=" first-letter:lpl-1">
+              <CarouselItem key={index} className=" first-letter:lpl-1 ">
                 <div className=" p-1 ">
-                  <Card className="w-[67vw] sm:w-[60vw] md:w-[45vw] lg:w-[29vw] h-[40rem]">
-                    <CardContent className="flex flex-col  items-center justify-around aspect-square p-4 h-full w-full">
-                        <div  className="flex flex-col gap-y-4">
+                  <Card className="w-[67vw] sm:w-[60vw] md:w-[45vw] lg:w-[29vw] h-[40rem] ">
+                    <CardContent className="flex flex-col  items-center justify-around aspect-square p-4 h-full w-full bg-neutral-100 dark:bg-black/40 rounded-lg">
+                        <div  className="flex flex-col gap-y-4 ">
                           <h1 className="text-center font-extrabold text-xl sm:text-2xl select-none">
                             {e.title}
                             </h1>
@@ -138,7 +152,7 @@ export default function Home() {
         </Carousel>
       </section>
 
-      <section
+      {/* <section
         className=" pt-[5rem] w-screen h-[75vh] min-h-[40rem] flex flex-col justify-center items-center"
         id="skills"
       >
@@ -148,7 +162,7 @@ export default function Home() {
           </h1>
         </div>
         <MyStack />
-      </section>
+      </section> */}
 
       <div>
       <Modal isOpen={isOpen} size={'5xl'} onOpenChange={onOpenChange}>
@@ -174,7 +188,7 @@ export default function Home() {
       </Modal>
       </div>
 
-      <section
+      {/* <section
         className="flex flex-col justify-center items-center mt-24"
         id="contact"
       >
@@ -214,8 +228,112 @@ export default function Home() {
             <GithubIcon className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
           </div>
         </article>
-            
+      </section> */}
 
+      <section className='w-full mt-44'>
+        <h1 className="text-4xl font-bold pb-2">About Me</h1>
+
+        <aside className='flex flex-wrap gap-4'>
+            <div className='flex responsive-card flex-col gap-4'>
+                <div>
+                  <Container className='h-[15rem]'>
+                    <div className='h-full flex flex-col justify-between'>
+
+                      <a href='https://www.linkedin.com/in/joaocpmcs/'
+                       target='_blank'
+                       className='font-semibold text-zinc-400 flex items-center gap-2 hover:text-black/60 dark:hover:text-zinc-300/95 hover:cursor-pointer'>
+                        <Linkedin size={17}/>
+                          João Carlos
+                      </a>
+
+                      <a href='https://github.com/Jc007zZ'
+                      target='_blank'
+                      className='font-semibold text-zinc-400 flex items-center gap-2 hover:text-black/60 dark:hover:text-zinc-300/95 hover:cursor-pointer'>
+                      <Github size={17} />
+                        Jc007zZ
+                      </a>
+
+                      <a href='https://wa.me/5531995764315' 
+                      target='_blank'
+                      className='font-semibold text-zinc-400 flex items-center gap-2 hover:text-black/60 dark:hover:text-zinc-300/95 hover:cursor-pointer'>
+                      <Smartphone size={17} />
+                        +55(31)99576-4315
+                      </a>
+
+                      <a href='https://docs.google.com/document/d/1JyY_CUnxkqqhQ9GqGSIaMGR1NT7g0-pkO53TYq6cDiU/edit?usp=sharing'
+                      target='_blank'
+                      className='font-semibold text-zinc-400 flex items-center gap-2 hover:text-black/60 dark:hover:text-zinc-300/95 hover:cursor-pointer'>
+                      <FileText size={17} />
+                        My cv
+                      </a>
+                      
+                      <h1 onClick={(e) => handleCopyClick(e)}
+                       className='font-semibold text-zinc-400 flex items-center gap-2 hover:text-black/60 dark:hover:text-zinc-300/95 hover:cursor-pointer'>
+                      <Mail size={17} />
+                        {email}
+                      </h1>
+
+                    </div>
+                  </Container>
+                </div>
+                <div className='flex gap-4'>
+                  <Container className='h-[8rem] flex flex-col justify-around dark:bg-white bg-neutral-950 '>
+                    <h1 className='flex justify-between items-center dark:text-zinc-500 text-white font-bold '>
+                     <div className='flex items-center gap-4'>
+                       <Clock size={20}/>
+                        Coding Hours
+                     </div>
+                      <Info size={20}/>
+                      </h1>
+                      <p className=' dark:text-black text-white text-2xl font-bold'>262 hrs</p>
+                  </Container>
+                  <Container className='h-[8rem] flex items-center justify-center'>
+                      <h1 className='text-center font-extrabold text-3xl '>Em breve</h1>
+                  </Container>
+                </div>
+            </div>
+            <div className='flex responsive-card flex-col gap-4'>
+                <div className='flex gap-4'>
+                  <Container className='flex flex-col items-center justify-around h-[8rem]'>
+                  <span className="relative flex size-5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full size-5 bg-green-500"></span>
+                  </span>
+                    <p className='text-xl font-extrabold text-center'>Avaliable for Work!!</p>
+                  </Container>
+                  <Container className='flex flex-col gap-4 h-[8rem]'>
+                    <div className='flex gap-2 items-center font-semibold dark:text-zinc-400 '> 
+                      <Pin size={16}/>
+                      <p>Localizantion</p>
+                    </div>
+                    <p>Brazil, Belo Horizonte</p>
+                  </Container>
+                </div>
+                <div>
+                  <Container className='h-[15rem]'>
+                    <div className='flex items-center gap-4'>
+                      <FileText size={20}/>
+                      <h1 className='text-xl font-bold'>Techstack</h1>
+                    </div>
+                    <div className='flex gap-2 flex-wrap pt-4 '>
+                       <Tech color='bg-emerald-500'>Next.js</Tech>
+                       <Tech color='bg-emerald-500'>React</Tech>
+                       <Tech color='bg-emerald-500'>Angular</Tech>
+                       <Tech color='bg-sky-600'>TypeScript</Tech>
+                       <Tech color='bg-sky-600'>JavaScript</Tech>
+                       <Tech color='bg-amber-600'>Docker</Tech>
+                       <Tech color='bg-rose-500'>Tailwind CSS</Tech>
+                       <Tech color='bg-rose-500'>Sass</Tech>
+                       <Tech color='bg-rose-500'>Postcss</Tech>
+                       <Tech color='bg-green-500'>Node</Tech>
+                       <Tech color='bg-lime-500'>PostgreSQL</Tech>
+                       <Tech color='bg-purple-500'>Prisma</Tech>
+                       <Tech color='bg-purple-500'>Sequialize</Tech>
+                    </div>
+                  </Container>
+                </div>
+            </div>
+        </aside>
       </section>
     </>
   );

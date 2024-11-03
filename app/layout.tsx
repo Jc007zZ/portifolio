@@ -56,7 +56,7 @@ export default async function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col ">
             <NavBar />
-            <main className="flex min-h-screen w-[100vw] flex-col items-center pt-16 flex-grow px-4 md:px-16 ">
+            <main className="flex min-h-screen max-w-7xl flex-col items-center pt-16 flex-grow px-4 md:px-16 ">
                 {children}
             </main>
             <footer className="w-full h-[5rem] flex items-center justify-center p-4">

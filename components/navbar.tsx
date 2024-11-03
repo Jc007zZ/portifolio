@@ -1,5 +1,5 @@
 "use client";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from "next-intl";
 import {
   Navbar,
   NavbarBrand,
@@ -12,24 +12,14 @@ import {
 
 import { GithubIcon, DiscordIcon } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
-import LocaleSwitcher from '@/components/ui/LocaleSwitcher';
-
-
-interface Project {
-  id: string,
-  title: string;
-  description: string;
-  image: string;
-  deploy: string;
-}
-
+import LocaleSwitcher from "@/components/ui/LocaleSwitcher";
 
 export default function App() {
-  
-  const t = useTranslations('about');
+  const t = useTranslations("about");
 
   function HandleItem() {
     const menu = document.getElementById("menu");
+
     menu?.click();
   }
 
@@ -54,13 +44,13 @@ export default function App() {
 
         <NavbarItem isActive className="hidden sm:flex">
           <a aria-current="page" className="text-lg" href="#projects">
-          {t("navProjects")}
+            {t("navProjects")}
           </a>
         </NavbarItem>
 
         <NavbarItem className="hidden sm:flex">
           <a className="text-lg" color="foreground" href="#contact">
-          {t("navContact")}
+            {t("navContact")}
           </a>
         </NavbarItem>
       </NavbarContent>
@@ -76,7 +66,7 @@ export default function App() {
         <DiscordIcon className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
         <GithubIcon className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
         <ThemeSwitch className="cursor-pointer hover:text-zinc-400 transition-all hover:scale-105" />
-        <LocaleSwitcher/>
+        <LocaleSwitcher />
         <NavbarMenuToggle className="sm:hidden" id="menu" />
       </NavbarContent>
 
@@ -89,7 +79,7 @@ export default function App() {
               href="#skills"
               onClick={HandleItem}
             >
-               {t("navSkills")}
+              {t("navSkills")}
             </a>
           </NavbarItem>
           <NavbarItem isActive>
@@ -99,7 +89,7 @@ export default function App() {
               href="#projects"
               onClick={HandleItem}
             >
-               {t("navProjects")}
+              {t("navProjects")}
             </a>
           </NavbarItem>
           <NavbarItem>
@@ -109,7 +99,7 @@ export default function App() {
               href="#contact"
               onClick={HandleItem}
             >
-               {t("navContact")}
+              {t("navContact")}
             </a>
           </NavbarItem>
         </NavbarMenuItem>

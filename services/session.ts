@@ -7,8 +7,8 @@ export async function loginUser(credentials: {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(
-        credentials.email === 'jane@doe.com' &&
-          credentials.password === 'next-intl'
+        credentials.email === "jane@doe.com" &&
+          credentials.password === "next-intl",
       );
     }, 1000);
   });

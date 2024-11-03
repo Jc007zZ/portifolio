@@ -1,7 +1,5 @@
-import {LocaleSwitcherSelect} from '@/components/ui/LocaleSwitcherSelect';
+import { LocaleSwitcherSelect } from "@/components/ui/LocaleSwitcherSelect";
 
 export default function LocaleSwitcher() {
-  return (
-    <LocaleSwitcherSelect/>
-  );
+  return <LocaleSwitcherSelect />;
 }

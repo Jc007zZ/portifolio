@@ -350,7 +350,7 @@ export default function Home() {
                   <FileText size={20} />
                   <h1 className="text-xl font-bold">Techstack</h1>
                 </div>
-                <div className="flex gap-2 flex-wrap pt-4 ">
+                <div id="skills" className="flex gap-2 flex-wrap pt-4 ">
                   <Tech color="bg-emerald-500">Next.js</Tech>
                   <Tech color="bg-emerald-500">React</Tech>
                   <Tech color="bg-emerald-500">Angular</Tech>

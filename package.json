@@ -21,7 +21,7 @@
 		"@nextui-org/navbar": "^2.0.37",
 		"@nextui-org/snippet": "2.0.43",
 		"@nextui-org/switch": "2.0.34",
-		"@nextui-org/system": "2.2.6",
+		"@nextui-org/system": "2.4.0",
 		"@nextui-org/theme": "2.2.11",
 		"@radix-ui/react-dropdown-menu": "^2.1.2",
 		"@radix-ui/react-select": "^2.1.1",

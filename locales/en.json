@@ -1,0 +1,26 @@
+{
+    "about": {
+        "navSkills": "Skills",
+        "navProjects": "Projects",
+        "navContact": "Contact",
+        "homeHi": "Hi I'm a  ",
+        "homeMarked": "Full Stack",
+        "homeLeading": "developer creating modern web apps.",
+        "homeDescription": "A full stack developer based in the Brazil. I'm passionate about building modern web applications using Next.js e Node.js.",
+        "homeButtonText": "My Skills",
+        "projectTitleSection": "My Projects",
+        "coffeDescription": "I identified a growing demand for specialty coffees and created a store. intuitive to serve this audience, especially during a pandemic. I used React to build a . responsive, Zod to validate data, and JavaScript for business logic and payments integration. The result was one. functional with high conversion and positive user feedback on usability and product variety.",
+        "cobaltDescription": "A leading page for an investment company, with the aim of increasing visibility. I used React to ensure responsiveness and fast loading, focusing on the user experience. The page included performance optimizations and analysis tools to monitor conversions. The result was an attractive and functional page that increased leads and engagement",
+        "droneDescription": "There was a notable growing demand for drones and I developed a landing page to serve this expanding market. I used React to create an interface. The result was a functional and attractive landing page, with a high conversion rate and positive feedback from users about the ease of navigation and the diversity of products offered.",
+        "appleDescription": "I saw an opportunity to improve the user experience on the Apple website. The goal was to ensure that the redesign not only maintained the brand identity, but also introduced improvements to the layout for engagement. The project resulted in a redesigned website that was praised for its modern interface and fast loading, which significantly improved the user experience and increased page retention.",
+        "raryDescription": "Rary Service needed a website to showcase its services, portfolio, and unique value, aiming to establish a solid digital presence. I was responsible for the development of the site, using Next.js and Tailwind CSS to create a lightweight and scalable application. I implemented reusable components, SEO-optimized pages, authentication logic, among other features. I also handled the full deployment on Vercel. The result was a professional and smooth user experience that increased visitor trust. The company began receiving more quote requests and saw a visible increase in the generation of qualified leads.",
+        "safetyQrDescription": "I identified a major bottleneck in accident communication (which was previously handled by shouting) and accessing vital health data in industrial settings. I developed an application focused on industries, where a QR code is attached to each worker’s helmet containing critical information such as blood type, allergies, and emergency contacts. In case of an accident, the code can be quickly scanned to access this data and request immediate help. The solution reduced reaction time, improved communication, and significantly decreased the number of fatalities resulting from workplace accidents.",
+        "mealTrackerDescription":"In a context where dietary control is essential, there was a need for an application capable of logging meals in a practical way. I implemented a meal tracking platform with the following features: meal registration with name, description, calories, date/time, and type; a dashboard with meal type filtering and visualization; automatic calculation of daily calorie totals; and display of statistics. I also added user authentication via Google using AuthJS, ensuring security and ease of access.",
+        "showMore": "Show More",
+        "stackTitleSection": "My Stack",
+        "contactTitle": ". Contact",
+        "contactCv": "My Cv:",
+        "clikHere": "Click Here",
+        "footerText": "powered"
+      }
+}

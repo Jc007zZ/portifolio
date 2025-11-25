@@ -1,0 +1,26 @@
+{  
+"about": {
+    "navSkills": "Habilidades",
+    "navProjects": "Projetos",
+    "navContact": "Contato",
+    "homeHi": "Oi eu sou um desenvolvedor",
+    "homeMarked": "Full Stack",
+    "homeLeading": "criador de aplicativos web modernos.",
+    "homeDescription": "Desenvolvedor full stack alocado no Brasil. Sou apaixonado por construir aplicativos web modernos usando Next.js e Node.js.",
+    "homeButtonText": "Minhas Habilidades",
+    "projectTitleSection": " Meus Projetos",
+    "coffeDescription": "Identifiquei uma demanda crescente por cafés especiais e criei uma loja online intuitiva para atender a esse público, especialmente durante a pandemia. Usei React para construir uma interface responsiva, Zod para validar dados, e JavaScript para lógica de negócios e integração de pagamentos. O resultado foi uma loja funcional com alta conversão e feedback positivo dos usuários sobre usabilidade e variedade de produtos.",
+    "cobaltDescription": "Desenvolvi uma leading Page para  uma empresa de investimentos, com o objetivo de aumentar visibilidade. Utilizei React para garantir responsividade e fast loading, focando na experiência do usuário. A página incluiu otimizações de performance e ferramentas de análise para monitorar conversões. O resultado foi uma página atraente e funcional, que aumentou leads e engajamento",
+    "droneDescription": "Foi notavel uma demanda crescente por drones e desenvolvi uma landing page para atender esse mercado em expansão. Utilizei React para criar uma interface. O resultado foi uma landing page funcional e atrativa, com alta taxa de conversão e feedback positivo dos usuários sobre a facilidade de navegação e a diversidade de produtos oferecidos.",
+    "appleDescription": "Percebi uma oportunidade para aprimorar a experiência do usuário no site da Apple. O objetivo era garantir que o redesign não apenas mantivesse a identidade da marca, mas também introduzisse melhorias no layout para engajamento. O projeto resultou em um site redesenhado que foi elogiado pela interface moderna e pelo carregamento rápido, o que melhorou significativamente a experiência do usuário e aumentou a permanência na página.",
+    "raryDescription": "A Rary Service, precisava de um site apresentar seus serviços, portfólio e diferenciais, com o objetivo de criar uma presença digital. Fui responsável pelo desenvolvimento do site, Utilizei Next.js e Tailwind para criar uma aplicação leve e escalável. Implementei componentes reutilizáveis,páginas otimizadas para seo, logicas de autenticações entre outros . Também fiz o deploy completo na Vercel, O site proporcionou uma experiência profissional e fluida, aumentando a confiança dos visitantes. A empresa passou a receber mais solicitações de orçamento e teve um aumento visível na geração de leads qualificados.",
+    "safetyQrDescription": "Indentifiquei um gagarlo na comunicação de acidentes(era feito na gritaria mesmo) e acesso a dados vitais, Desenvolvi uma aplicação com foco em industrias, é colado um qrcode no capacete do colaborador com informações vitais como tipo sanguineo, alergias entre outros, em emergencias é possivel escanear o codigo ter acesso as informações cruciais e solicitar ajuda imediata. O resultado foi uma diminuição no tempo de reação, comunicação mais efetiva e diminuição das fatalidades em decorrencias de acidentes",
+    "mealTrackerDescription":"Em um cenário onde o controle alimentar são essenciais, surgiu a necessidade de uma aplicação  capaz de registrar as refeições de forma prática. Implementei uma plataforma de registro de refeições com as seguintes funcionalidades: cadastro de refeições com nome, descrição, calorias, data/hora e tipo, dashboard com visualização e filtragem por tipo de refeição; cálculo automático do total de calorias por dia; e exibição de estatísticas. Também adicionei autenticação de usuários via Google utilizando AuthJS, garantindo segurança e facilidade de acesso.",
+    "showMore": "ver mais",
+    "stackTitleSection": "Minha Stack",
+    "contactTitle": "Meu Contato",
+    "contactCv": "Meu curriculo:",
+    "clikHere": "Click Aqui",
+    "footerText": "Criado por"
+}
+}

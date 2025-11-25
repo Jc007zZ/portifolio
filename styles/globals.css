@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --highlight: hsl(300, 100%, 50%);
+}
+
+
+#jcLogo {
+  text-shadow: 1px 2px 10px rgba(110, 197, 231, 0.442);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.scrollbar-hidden {
+  overflow: auto;
+  /* ou scroll */
+  scrollbar-width: none;
+  /* Para Firefox */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+  /* Para Chrome e Safari */
+}
+
+.responsive-card {
+  flex-grow: 1;
+  /* flex-shrink: ; */
+  flex-basis: 30rem;
+
+}

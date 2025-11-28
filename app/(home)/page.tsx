@@ -38,6 +38,7 @@ import {
 import { Container } from "@/components/ui/container";
 import { Tech } from "@/components/ui/tech";
 import ProjectImage from "@/components/project-image";
+import Image from "next/image";
 
 
 interface Project {
@@ -46,12 +47,88 @@ interface Project {
   description: string;
   image: string;
   deploy: string;
+  situation?: string;
+  task?: string;
+  action?: string;
+  result?: string;
 }
 
 export default function Home() {
   const t = useTranslations("about");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [content, setcontent] = React.useState({} as Project);
+  const modalContentRef = React.useRef<HTMLDivElement>(null);
+  const modalImageRef = React.useRef<HTMLDivElement>(null);
+
+  // Bloquear scroll do body e wrapper do modal quando modal está aberto
+  React.useEffect(() => {
+    if (isOpen) {
+      // Salvar a posição atual do scroll
+      const scrollY = window.scrollY;
+      // Bloquear scroll do body
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Bloquear scroll do wrapper do modal (MotionComponent)
+      // Usar setTimeout para garantir que o wrapper esteja no DOM
+      const timeoutId = setTimeout(() => {
+        const modalWrapper = document.querySelector('[data-slot="wrapper"]') as HTMLElement;
+        if (modalWrapper) {
+          modalWrapper.style.overflowX = 'hidden';
+          modalWrapper.style.overflowY = 'hidden';
+        }
+      }, 0);
+      
+      // Também criar um observer para capturar quando o wrapper for adicionado
+      const observer = new MutationObserver(() => {
+        const modalWrapper = document.querySelector('[data-slot="wrapper"]') as HTMLElement;
+        if (modalWrapper) {
+          modalWrapper.style.overflowX = 'hidden';
+          modalWrapper.style.overflowY = 'hidden';
+          observer.disconnect();
+        }
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+      
+      return () => {
+        clearTimeout(timeoutId);
+        observer.disconnect();
+        // Restaurar scroll quando modal fechar
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        const modalWrapper = document.querySelector('[data-slot="wrapper"]') as HTMLElement;
+        if (modalWrapper) {
+          modalWrapper.style.overflowX = '';
+          modalWrapper.style.overflowY = '';
+        }
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
+  // Handler para prevenir que o Lenis capture o scroll do modal
+  const handleModalWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const element = modalContentRef.current;
+    if (!element) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = element;
+    const isAtTop = scrollTop === 0;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+    const isScrollingUp = e.deltaY < 0;
+    const isScrollingDown = e.deltaY > 0;
+
+    // Se não está no topo ou no fundo, previne a propagação para o Lenis
+    if ((isScrollingUp && !isAtTop) || (isScrollingDown && !isAtBottom)) {
+      e.stopPropagation();
+    } else if ((isScrollingUp && isAtTop) || (isScrollingDown && isAtBottom)) {
+      // Se está no topo ou no fundo, previne sempre para não rolar o body
+      e.stopPropagation();
+    }
+  };
 
   // GSAP Animations
   const containerRef = React.useRef(null);
@@ -124,6 +201,10 @@ export default function Home() {
       description: t("raryDescription"),
       image: "/project-images/rary.png",
       deploy: "https://raryservice.com/",
+      situation: t("rarySituation"),
+      task: t("raryTask"),
+      action: t("raryAction"),
+      result: t("raryResult"),
     },
     {
       id: "2",
@@ -131,6 +212,10 @@ export default function Home() {
       description: t("safetyQrDescription"),
       image: "/project-images/safetyqr.png",
       deploy: "https://safetyqr.vercel.app/",
+      situation: t("safetyQrSituation"),
+      task: t("safetyQrTask"),
+      action: t("safetyQrAction"),
+      result: t("safetyQrResult"),
     },
     {
       id: "3",
@@ -138,6 +223,10 @@ export default function Home() {
       description: t("mealTrackerDescription"),
       image: "/project-images/mealtracker.png",
       deploy: "https://mealtracker-nu.vercel.app/dashboard",
+      situation: t("mealTrackerSituation"),
+      task: t("mealTrackerTask"),
+      action: t("mealTrackerAction"),
+      result: t("mealTrackerResult"),
     },
     {
       id: "4",
@@ -145,6 +234,10 @@ export default function Home() {
       description: t("cobaltDescription"),
       image: "/project-images/cobalt.png",
       deploy: "https://cobalt-tan-delta.vercel.app/",
+      situation: t("cobaltSituation"),
+      task: t("cobaltTask"),
+      action: t("cobaltAction"),
+      result: t("cobaltResult"),
     },
     {
       id: "5",
@@ -152,6 +245,10 @@ export default function Home() {
       description: t("coffeDescription"),
       image: "/project-images/coffe.png",
       deploy: "https://coffee-nine-sandy.vercel.app/",
+      situation: t("coffeSituation"),
+      task: t("coffeTask"),
+      action: t("coffeAction"),
+      result: t("coffeResult"),
     },
     {
       id: "6",
@@ -159,6 +256,10 @@ export default function Home() {
       description: t("droneDescription"),
       image: "/project-images/drone.png",
       deploy: "https://drone-shop-ten.vercel.app/",
+      situation: t("droneSituation"),
+      task: t("droneTask"),
+      action: t("droneAction"),
+      result: t("droneResult"),
     },
     {
       id: "7",
@@ -166,6 +267,10 @@ export default function Home() {
       description: t("appleDescription"),
       image: "/project-images/apple.png",
       deploy: "https://jc007zz.vercel.app/no-deploy",
+      situation: t("appleSituation"),
+      task: t("appleTask"),
+      action: t("appleAction"),
+      result: t("appleResult"),
     },
 
   ];
@@ -174,6 +279,38 @@ export default function Home() {
     setcontent(content);
     onOpen();
   };
+
+  // Scroll automático da imagem no modal
+  const scrollIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const startImageScrolling = () => {
+    if (scrollIntervalRef.current) return;
+    scrollIntervalRef.current = setInterval(() => {
+      if (modalImageRef.current) {
+        modalImageRef.current.scrollTop += 2;
+      }
+    }, 30);
+  };
+
+  const stopImageScrolling = () => {
+    if (modalImageRef.current) {
+      modalImageRef.current.scrollTop = 0;
+    }
+    if (scrollIntervalRef.current) {
+      clearInterval(scrollIntervalRef.current);
+      scrollIntervalRef.current = null;
+    }
+  };
+
+  // Limpar interval quando modal fechar
+  React.useEffect(() => {
+    if (!isOpen) {
+      stopImageScrolling();
+    }
+    return () => {
+      stopImageScrolling();
+    };
+  }, [isOpen]);
 
   const [copySuccess, setCopySuccess] = React.useState("");
   const [email, setEmail] = React.useState("joaocpmcs@gmail.com");
@@ -232,20 +369,21 @@ export default function Home() {
             {projects.map((e: Project, index) => (
               <CarouselItem key={index} className=" first-letter:lpl-1 ">
                 <div className=" p-1 ">
-                  <Card className="w-[67vw] sm:w-[60vw] md:w-[45vw] lg:w-[29vw] h-[45rem] ">
-                    <CardContent className="flex flex-col  items-center justify-around aspect-square p-4 h-full w-full bg-neutral-100 dark:bg-black/40 rounded-lg">
+                  <Card className="w-[67vw] sm:w-[60vw] md:w-[45vw] lg:w-[29vw] h-[30rem] ">
+                    <CardContent className="flex flex-col  items-center justify-around aspect-square p-4 h-full w-full bg-neutral-100 dark:bg-black/40 rounded-lg gap-4">
                       <div className="flex flex-col gap-y-4 ">
                         <h1 className="text-center font-extrabold text-xl sm:text-2xl select-none">
                           {e.title}
                         </h1>
-                        <p className="text-center text-sm font-medium select-none h-[13rem]">
+                        <p className="text-center text-sm font-medium select-none">
                           {e.description}
                         </p>
                       </div>
                       <ProjectImage src={e.image} />
                       <Button
+                        className="p-4"
                         key={"5xl"}
-                        onPress={() => window.open(e.deploy, "_blankt")}
+                        onPress={() => handleOpen(e)}
                       >
                         {t("showMore")}
                       </Button>
@@ -261,30 +399,75 @@ export default function Home() {
       </section>
       <div>
         <Modal isOpen={isOpen} size={"5xl"} onOpenChange={onOpenChange}>
-          <ModalContent className="h-[80vh]">
+            <div 
+              ref={modalContentRef}
+              
+              onWheel={handleModalWheel}
+            >
+          <ModalContent className="h-[90vh] overflow-y-auto">
             {(onClose: any) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">
+                <ModalHeader className="flex justify-center items-center text-2xl font-bold">
                   {content.title}
                 </ModalHeader>
-                <ModalBody className="flex flex-row-reverse items-center">
-                  <p className="flex-1 h-5/6">{content.description}</p>
-                  <ProjectImage
-                    className="flex-1 h-[30rem]"
-                    src={content.image}
-                  />
+                <ModalBody className="flex flex-col gap-6 px-8">
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-xl font-semibold">{t("starSituation")}</h3>
+                      <p className="text-zinc-600 dark:text-zinc-400">
+                        {content.situation || content.description}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-xl font-semibold">{t("starTask")}</h3>
+                      <p className="text-zinc-600 dark:text-zinc-400">
+                        {content.task || ""}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-xl font-semibold">{t("starAction")}</h3>
+                      <p className="text-zinc-600 dark:text-zinc-400">
+                        {content.action || ""}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-xl font-semibold">{t("starResult")}</h3>
+                      <p className="text-zinc-600 dark:text-zinc-400">
+                        {content.result || ""}
+                      </p>
+                    </div>
+
+                    <div 
+                      ref={modalImageRef}
+                      className="w-full h-[300px] rounded-xl overflow-auto border border-zinc-200 dark:border-zinc-800 mt-4 scrollbar-hidden"
+                      onMouseEnter={startImageScrolling}
+                      onMouseLeave={stopImageScrolling}
+                    >
+                      <Image
+                        alt={content.title}
+                        src={content.image}
+                        width={1200}
+                        height={600}
+                        className="w-full h-auto object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                      />
+                  </div>
                 </ModalBody>
-                <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
-                    Close
-                  </Button>
-                  <Button color="primary" onPress={onClose}>
-                    Action
+                <ModalFooter className="flex justify-center pb-8">
+                  <Button
+                    className="w-48 font-semibold"
+                    color="primary"
+                    onPress={() => window.open(content.deploy, "_blank")}
+                    >
+                    {t("viewInLive")}
                   </Button>
                 </ModalFooter>
               </>
             )}
           </ModalContent>
+                    </div>
         </Modal>
       </div>
       <section id="contact" className="w-full mt-44">

@@ -37,6 +37,23 @@ const ProcjtImage: React.FC<ScrollOnHoverProps> = ({
     }
   };
 
+  // Previne que o Lenis capture o evento de scroll quando está dentro deste elemento
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const element = scrollContainerRef.current;
+    if (!element) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = element;
+    const isAtTop = scrollTop === 0;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+    const isScrollingUp = e.deltaY < 0;
+    const isScrollingDown = e.deltaY > 0;
+
+    // Se não está no topo ou no fundo, ou se pode fazer scroll, previne a propagação
+    if ((isScrollingUp && !isAtTop) || (isScrollingDown && !isAtBottom)) {
+      e.stopPropagation();
+    }
+  };
+
   return (
     <div
       ref={scrollContainerRef}
@@ -46,6 +63,7 @@ const ProcjtImage: React.FC<ScrollOnHoverProps> = ({
       )}
       onMouseEnter={startScrolling}
       onMouseLeave={stopScrolling}
+      onWheel={handleWheel}
       {...props}
     >
       <Image alt={"teste"} height={0} src={src} width={500} />

@@ -34,3 +34,9 @@ html {
   flex-basis: 30rem;
 
 }
+
+/* Remover scroll do wrapper do modal */
+[data-slot="wrapper"] {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}

@@ -19,6 +19,7 @@ import {
   Clock,
   Info,
   Pin,
+  Activity,
 } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -39,6 +40,10 @@ import { Container } from "@/components/ui/container";
 import { Tech } from "@/components/ui/tech";
 import ProjectImage from "@/components/project-image";
 import Image from "next/image";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { WorkStatus } from "@/components/ui/work-status";
 
 
 interface Project {
@@ -52,6 +57,49 @@ interface Project {
   action?: string;
   result?: string;
 }
+
+const technologies = [
+  {
+    name: "Next.js",
+    colorClass: "text-white",
+  },
+  {
+    name: "TypeScript",
+    colorClass: "text-blue-600",
+  },
+  {
+    name: "Tailwind CSS",
+    colorClass: "text-cyan-500",
+  },
+  {
+    name: "React",
+    colorClass: "text-emerald-400",
+  },
+  {
+    name: "Node.js",
+    colorClass: "text-emerald-500",
+  },
+  {
+    name: "PostgreSQL",
+    colorClass: "text-blue-400",
+  },
+  {
+    name: "Python",
+    colorClass: "text-orange-600",
+  },
+  {
+    name: "Docker",
+    colorClass: "text-blue-500",
+  },
+  {
+    name: "Prisma",
+    colorClass: "text-purple-500",
+  },
+  {
+    name: "Cloudflare",
+    colorClass: "text-orange-500",
+  }
+];
 
 export default function Home() {
   const t = useTranslations("about");
@@ -68,7 +116,7 @@ export default function Home() {
       // Bloquear scroll do body
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
-      
+
       // Bloquear scroll do wrapper do modal (MotionComponent)
       // Usar setTimeout para garantir que o wrapper esteja no DOM
       const timeoutId = setTimeout(() => {
@@ -78,7 +126,7 @@ export default function Home() {
           modalWrapper.style.overflowY = 'hidden';
         }
       }, 0);
-      
+
       // Também criar um observer para capturar quando o wrapper for adicionado
       const observer = new MutationObserver(() => {
         const modalWrapper = document.querySelector('[data-slot="wrapper"]') as HTMLElement;
@@ -88,12 +136,12 @@ export default function Home() {
           observer.disconnect();
         }
       });
-      
+
       observer.observe(document.body, {
         childList: true,
         subtree: true
       });
-      
+
       return () => {
         clearTimeout(timeoutId);
         observer.disconnect();
@@ -349,7 +397,7 @@ export default function Home() {
             </span>
             {t("homeLeading")}
           </p>
-          <p className="hero-text text-center text-xl text-zinc-500 max-w-[50rem]">
+          <p className="hero-text px-8 text-center text-xl text-zinc-500 max-w-[50rem]">
             {t("homeDescription")}
           </p>
           <div className="hero-text">
@@ -357,6 +405,24 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
+      <section className="flex flex-col items-center justify-center w-full py-20 pb-20 overflow-hidden" id="tech-stack">
+        <div className="flex flex-col items-center justify-center gap-4 mb-10">
+          <h1 className="h-20  text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+            {t("techStackTitle")}
+          </h1>
+          <p className="text-neutral-300 text-lg px-8 text-center max-w-lg mx-auto">
+            {t("techStackDesc")}
+          </p>
+        </div>
+        <InfiniteMovingCards
+          items={technologies}
+          direction="right"
+          speed="slow"
+        />
+      </section>
+
       <section className="flex flex-col items-center w-full" id="projects">
         <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md ">
           <h1 className="projects-title text-5xl font-bold h-14 pl-2 pb-20">
@@ -399,18 +465,18 @@ export default function Home() {
       </section>
       <div>
         <Modal isOpen={isOpen} size={"5xl"} onOpenChange={onOpenChange}>
-            <div 
-              ref={modalContentRef}
-              
-              onWheel={handleModalWheel}
-            >
-          <ModalContent className="h-[90vh] overflow-y-auto">
-            {(onClose: any) => (
-              <>
-                <ModalHeader className="flex justify-center items-center text-2xl font-bold">
-                  {content.title}
-                </ModalHeader>
-                <ModalBody className="flex flex-col gap-6 px-8">
+          <div
+            ref={modalContentRef}
+
+            onWheel={handleModalWheel}
+          >
+            <ModalContent className="h-[90vh] overflow-y-auto">
+              {(onClose: any) => (
+                <>
+                  <ModalHeader className="flex justify-center items-center text-2xl font-bold">
+                    {content.title}
+                  </ModalHeader>
+                  <ModalBody className="flex flex-col gap-6 px-8">
                     <div className="flex flex-col gap-2">
                       <h3 className="text-xl font-semibold">{t("starSituation")}</h3>
                       <p className="text-zinc-600 dark:text-zinc-400">
@@ -439,7 +505,7 @@ export default function Home() {
                       </p>
                     </div>
 
-                    <div 
+                    <div
                       ref={modalImageRef}
                       className="w-full h-[300px] rounded-xl overflow-auto border border-zinc-200 dark:border-zinc-800 mt-4 scrollbar-hidden"
                       onMouseEnter={startImageScrolling}
@@ -453,25 +519,25 @@ export default function Home() {
                         className="w-full h-auto object-cover"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                       />
-                  </div>
-                </ModalBody>
-                <ModalFooter className="flex justify-center pb-8">
-                  <Button
-                    className="w-48 font-semibold"
-                    color="primary"
-                    onPress={() => window.open(content.deploy, "_blank")}
-                    >
-                    {t("viewInLive")}
-                  </Button>
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
                     </div>
+                  </ModalBody>
+                  <ModalFooter className="flex justify-center pb-8">
+                    <Button
+                      className="w-48 font-semibold"
+                      color="primary"
+                      onPress={() => window.open(content.deploy, "_blank")}
+                    >
+                      {t("viewInLive")}
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
+            </ModalContent>
+          </div>
         </Modal>
       </div>
-      <section id="contact" className="w-full mt-44">
-        <h1 className="about-title text-4xl font-bold pb-2">About Me</h1>
+      <section id="contact" className="px-8 sm:px-20 md:px-30 lg:px-40 w-full mt-44">
+        <h1 className="about-title text-4xl font-bold pb-2">{t("aboutTitle")}</h1>
 
         <aside className="flex flex-wrap gap-4">
           <div className="flex responsive-card flex-col gap-4">
@@ -515,7 +581,7 @@ export default function Home() {
                     target="_blank"
                   >
                     <FileText size={17} />
-                    My cv
+                    {t("contactCv")}
                   </a>
 
                   <button
@@ -529,40 +595,36 @@ export default function Home() {
               </Container>
             </div>
             <div className="flex gap-4">
-              <Container className="h-[8rem] flex flex-col justify-around dark:bg-white bg-neutral-950 ">
+              <Container className="h-[8rem] flex flex-col justify-between dark:bg-white bg-neutral-950 ">
                 <h1 className="flex justify-between items-center dark:text-zinc-500 text-white font-bold ">
                   <div className="flex items-center gap-4">
                     <Clock size={20} />
-                    Coding Hours
+                    {t("codingHours")}
                   </div>
                   <Info size={20} />
                 </h1>
-                <p className=" dark:text-black text-white text-2xl font-bold">
-                  262 hrs
+                <p className=" dark:text-black text-white text-3xl font-bold">
+                  <AnimatedCounter value={262} /> hrs
                 </p>
               </Container>
-              <Container className="h-[8rem] flex items-center justify-center">
-                <h1 className="text-center font-extrabold text-3xl ">
-                  Em breve
-                </h1>
-              </Container>
+              <CardSpotlight className="h-[8rem] flex flex-col justify-around transition-all duration-300 hover:border-blue-500">
+                <div className="flex items-center gap-4 font-bold text-zinc-600 dark:text-zinc-400">
+                  <Activity size={20} />
+                  <h1>{t("activeProjects")}</h1>
+                </div>
+                <p className="text-3xl font-extrabold pt-8">
+                  <AnimatedCounter value={14} />
+                </p>
+              </CardSpotlight>
             </div>
           </div>
           <div className="flex responsive-card flex-col gap-4">
             <div className="flex gap-4">
-              <Container className="flex flex-col items-center justify-around h-[8rem]">
-                <span className="relative flex size-5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full size-5 bg-green-500" />
-                </span>
-                <p className="text-xl font-extrabold text-center">
-                  Avaliable for Work!!
-                </p>
-              </Container>
+              <WorkStatus status="limited" />
               <Container className="flex flex-col gap-4 h-[8rem]">
                 <div className="flex gap-2 items-center font-semibold dark:text-zinc-400 ">
                   <Pin size={16} />
-                  <p>Localizantion</p>
+                  <p>{t("localization")}</p>
                 </div>
                 <p>Brazil, Belo Horizonte</p>
               </Container>
@@ -571,7 +633,7 @@ export default function Home() {
               <Container className="h-[15rem]">
                 <div className="flex items-center gap-4">
                   <FileText size={20} />
-                  <h1 className="text-xl font-bold">Techstack</h1>
+                  <h1 className="text-xl font-bold">{t("techStackLabel")}</h1>
                 </div>
                 <div id="skills" className="flex gap-2 flex-wrap pt-4 ">
                   <Tech color="bg-emerald-500">Next.js</Tech>
@@ -593,6 +655,6 @@ export default function Home() {
           </div>
         </aside>
       </section>
-    </div>
+    </div >
   );
 }

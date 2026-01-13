@@ -40,3 +40,14 @@ html {
   overflow-x: hidden !important;
   overflow-y: hidden !important;
 }
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 2rem));
+    /* Adjust based on checking loop smoothness */
+  }
+}
+
+.animate-infinite-scroll {
+  animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+}

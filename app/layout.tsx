@@ -69,7 +69,7 @@ export default async function RootLayout({
                 />
               </div>
               <NavBar />
-              <main className="flex min-h-screen max-w-7xl flex-col items-center pt-16 flex-grow px-4 md:px-16 ">
+              <main className="flex min-h-screen flex-col items-center pt-16 flex-grow  ">
                 {children}
                 <Analytics />
                 <SpeedInsights />
@@ -79,7 +79,7 @@ export default async function RootLayout({
                   Powered by{" "}
                   <a
                     className="text-primary hover:underline hover:cursor-pointer"
-                    href="https://discordapp.com/users/428365185246560258"
+                    href="https://discordapp.com/users/666444826639597598"
                     rel="noreferrer"
                     target="_blank"
                   >
